@@ -17,14 +17,4 @@ public interface TodoService {
 
     List<Todo> getTodo();
 
-    Long createTask(Long todoId, Task task);
-
-    Task getTask(Long todoId, Long taskId);
-
-    List<Task> getAllTask(Long todoId);
-
-    void updateTask(Task task);
-
-    void deleteTask(Long taskId);
-
 }

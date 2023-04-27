@@ -2,6 +2,7 @@ package com.tddninja.todo.presentation.api;
 
 import com.tddninja.todo.application.entity.Task;
 import com.tddninja.todo.application.entity.Todo;
+import com.tddninja.todo.application.service.TaskService;
 import com.tddninja.todo.application.service.TodoService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,7 @@ import java.util.List;
 public class TodoController {
 
     private final TodoService todoService;
+    private final TaskService taskService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -61,19 +63,19 @@ public class TodoController {
     @ResponseStatus(HttpStatus.CREATED)
     public Long createTask(@PathVariable Long todoId, @RequestBody Task task) {
         log.info("Creating task under todo id: " + todoId);
-        return todoService.createTask(todoId, task);
+        return taskService.createTask(todoId, task);
     }
 
     @GetMapping("/{todoId}/task")
     @ResponseStatus(HttpStatus.OK)
     public List<Task> getAllTasks(@PathVariable Long todoId) {
-        return todoService.getAllTask(todoId);
+        return taskService.getAllTask(todoId);
     }
 
     @GetMapping("/{todoId}/task/{taskId}")
     @ResponseStatus(HttpStatus.OK)
     public Task getTask(@PathVariable Long todoId, @PathVariable Long taskId) {
-        return todoService.getTask(todoId, taskId);
+        return taskService.getTask(todoId, taskId);
     }
 
     @PutMapping("/{todoId}/task/{taskId}")
@@ -81,12 +83,12 @@ public class TodoController {
     public void updateTodo(@PathVariable Long todoId, @PathVariable Long taskId, @RequestBody Task task) {
         task.setId(taskId);
         task.setTodo(Todo.builder().id(todoId).build());
-        todoService.updateTask(task);
+        taskService.updateTask(task);
     }
 
     @DeleteMapping("/{}/task/{taskId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteTask(@PathVariable Long taskId) {
-        todoService.deleteTask(taskId);
+        taskService.deleteTask(taskId);
     }
 }
