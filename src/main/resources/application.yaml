@@ -1,7 +1,10 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: Todo123!
+#    url: jdbc:postgresql://localhost:5432/postgres
+#    username: postgres
+#    password: Todo123!
+    url: jdbc:mariadb://ideapad-slim5.local:3306/public
+    username: admin
+    password: password
 
   jpa.hibernate.ddl-auto: none

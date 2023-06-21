@@ -56,6 +56,7 @@ public class TodoController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Todo> getTodo() {
+        log.info("Getting Todo");
         return todoService.getTodo();
     }
 
